@@ -1,32 +1,30 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+  <div class="grid--container">
+    <Header></Header>
+    <Main></Main>
+    <Footer></Footer>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Footer from "./components/Footer";
+export default {
+  name: "App",
+  components: {
+    Header,
+    Main,
+    Footer
   }
+};
+</script>
+<style lang="scss">
+.grid--container {
+  display: $display-gird;
+  grid-template-rows: 3.5rem 1fr auto;
+  height: 100vh;
+  grid-gap: 0.5rem;
+  min-height: 100%;
 }
 </style>
