@@ -1,0 +1,30 @@
+.form--container {
+    width: 25rem;
+    border: 1px solid $primary-color;
+    padding: 1rem;
+    background: #fff;
+}
+.form--group {
+    margin: 0 0 1rem 0;
+}
+.form--label {
+    display: block;
+    color:$primary-color;
+    margin: 0 0 0.4rem 0;
+}
+.form--input {
+    font-family: sans-serif;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: #374853;
+    line-height: 2.375rem;
+    min-height: 2.375rem;
+    position: relative;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    background: #fff;
+    padding: 0 0.5rem;
+    width: 100%;
+    transition: border .1s ease;
+    box-sizing: border-box;
+}
