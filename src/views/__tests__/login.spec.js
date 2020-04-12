@@ -1,25 +1,24 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import Login from "@/views/Login.vue";
+import Login from "../Login.vue";
 import Vuelidate from "vuelidate";
 
 const localVue = createLocalVue();
 localVue.use(Vuelidate);
 
 describe("Login.vue", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallowMount(Login, {
-      localVue
+  it.only("emit formsubmitted event and check the payload", () => {
+    const wrapper = shallowMount(Login, {
+      localVue,
+      attachToDocument: true
     });
-  });
-  it("initialize Login Component", () => {
-    expect(wrapper.isVueInstance()).toBeTruthy();
-  });
-  it("trigger submit button and verify form is invalid", () => {
-    const submitButton = wrapper.find("button");
-    // wrapper.find("#email").setValue("ravi@gmail.com");
-    // wrapper.find("#password").setValue("ravi");
-    submitButton.trigger("submit");
-    expect(wrapper.vm.$v.$invalid).toBeTruthy();
+    const email = wrapper.find('[data-testid="email"]');
+    email.setValue("ravi@gmail.com");
+    const password = wrapper.find('[data-testid="password"]');
+    password.setValue("ravi");
+    wrapper.find("[type='submit']").trigger("click");
+    const emittedFormEvent = wrapper.emitted("form-submitted");
+    expect(emittedFormEvent).toHaveLength(1);
+    const payload = { email: "ravi@gmail.com", password: "ravi" };
+    expect(wrapper.emitted("form-submitted")[0][0]).toMatchObject(payload);
   });
 });

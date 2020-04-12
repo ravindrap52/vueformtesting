@@ -1,5 +1,5 @@
 <template>
-  <div class="route--display--container">
+  <div>
     <router-view />
   </div>
 </template>
@@ -10,10 +10,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.route--display--container {
-  display: $display-flex;
-  justify-content: center;
-  align-self: center;
-}
-</style>
+<style lang="scss" scoped></style>

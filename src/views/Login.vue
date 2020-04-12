@@ -6,6 +6,7 @@
         <input
           type="email"
           id="email"
+          data-testid="email"
           class="form--input"
           v-model="loginForm.email"
           @blur="$v.loginForm.email.$touch()"
@@ -20,6 +21,7 @@
         <input
           type="password"
           id="password"
+          data-testid="password"
           class="form--input"
           v-model="loginForm.password"
           @blur="$v.loginForm.email.$touch()"
@@ -62,14 +64,15 @@ export default {
     doLogin() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        this.$store
-          .dispatch("login", this.loginForm)
-          .then(() => {
-            this.$router.push({ path: "/dashboard" });
-          })
-          .catch(error => {
-            console.error(error);
-          });
+        this.$emit("form-submitted", this.loginForm);
+        // this.$store
+        //   .dispatch("login", this.loginForm)
+        //   .then(() => {
+        //     this.$router.push({ path: "/dashboard" });
+        //   })
+        //   .catch(error => {
+        //     console.error(error);
+        //   });
       }
     }
   }
