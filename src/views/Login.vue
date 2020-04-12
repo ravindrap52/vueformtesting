@@ -5,6 +5,7 @@
         <label class="form--label" for="email">Email</label>
         <input
           type="email"
+          id="email"
           class="form--input"
           v-model="loginForm.email"
           @blur="$v.loginForm.email.$touch()"
@@ -18,6 +19,7 @@
         <label class="form--label" for="password">Password</label>
         <input
           type="password"
+          id="password"
           class="form--input"
           v-model="loginForm.password"
           @blur="$v.loginForm.email.$touch()"
@@ -36,6 +38,7 @@
 <script>
 import { required, email } from "vuelidate/lib/validators";
 export default {
+  name: "Login",
   data() {
     return {
       loginForm: {
@@ -59,7 +62,14 @@ export default {
     doLogin() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        console.log("form submitted", this.loginForm);
+        this.$store
+          .dispatch("login", this.loginForm)
+          .then(() => {
+            this.$router.push({ path: "/dashboard" });
+          })
+          .catch(error => {
+            console.error(error);
+          });
       }
     }
   }

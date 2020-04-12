@@ -6,6 +6,9 @@ describe("Header.vue", () => {
   beforeEach(() => {
     wrapper = shallowMount(Header);
   });
+  it("sanity test", () => {
+    expect(true).toBe(true);
+  });
   it("initialize header component", () => {
     expect(wrapper.isVueInstance()).toBeTruthy();
   });
