@@ -12,15 +12,22 @@ export default {
   components: {
     Login
   },
+  computed: {
+    getLoggedInUser() {
+      return this.$store.state.user;
+    }
+  },
   methods: {
-    doSubmit(data) {
+    async doSubmit(data) {
       this.$store
         .dispatch("userLogin", data)
-        .then(response => {
-          console.error("response", response);
+        .then(() => {
+          if (this.getLoggedInUser) {
+            console.log("no errors", this.getLoggedInUser);
+          }
         })
-        .catch(error => {
-          console.error("error", error);
+        .catch(() => {
+          console.error("error");
         });
     }
   }

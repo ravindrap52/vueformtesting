@@ -1,5 +1,5 @@
 export default {
-  SETUSER: (state, { user }) => {
+  SETUSER: (state, user) => {
     state.user = user.id;
   }
 };

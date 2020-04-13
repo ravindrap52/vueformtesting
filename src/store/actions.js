@@ -1,7 +1,9 @@
 import { loginUser } from "../api/api";
 
 export default {
-  userLogin: ({ commit }, { loginData }) => {
-    return loginUser(loginData).then(userData => commit("SETUSER", userData));
+  userLogin: async ({ commit }, loginData) => {
+    const userData = await loginUser(loginData);
+    commit("SETUSER", userData);
+    return userData;
   }
 };
