@@ -11,8 +11,7 @@ describe("Main.vue", () => {
   it("should render child component", () => {
     const wrapper = mount(Main, {
       localVue,
-      router,
-      stubs: ["router-link", "router-view"]
+      router
     });
     const childComponent = wrapper.find(Login);
   });
