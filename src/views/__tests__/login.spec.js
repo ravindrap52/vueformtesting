@@ -15,7 +15,7 @@ describe("Login.vue", () => {
     email.setValue("ravi@gmail.com");
     const password = wrapper.find('[data-testid="password"]');
     password.setValue("ravi");
-    wrapper.find("[type='submit']").trigger("click");
+    wrapper.find('[data-testid="submit"]').trigger("click");
     const emittedFormEvent = wrapper.emitted("form-submitted");
     expect(emittedFormEvent).toHaveLength(1);
     const payload = { email: "ravi@gmail.com", password: "ravi" };

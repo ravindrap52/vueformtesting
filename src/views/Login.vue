@@ -31,7 +31,7 @@
         </template>
       </div>
       <div class="form--group">
-        <button type="submit">Login</button>
+        <button data-testid="submit" type="submit">Login</button>
       </div>
     </form>
   </div>

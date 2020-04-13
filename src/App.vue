@@ -14,7 +14,14 @@ export default {
   },
   methods: {
     doSubmit(data) {
-      console.log(data.email);
+      this.$store
+        .dispatch("userLogin", data)
+        .then(response => {
+          console.error("response", response);
+        })
+        .catch(error => {
+          console.error("error", error);
+        });
     }
   }
 };
