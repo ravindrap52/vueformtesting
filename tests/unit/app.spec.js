@@ -2,31 +2,36 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import flushPromises from "flush-promises";
 import App from "@/App.vue";
+import merge from "lodash.merge";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("App.vue", () => {
-  let storeOptions;
-  let store;
-  beforeEach(() => {
-    storeOptions = {
+  function createStore(overrides) {
+    const defaultStoreConfig = {
       actions: {
-        userLogin: jest.fn(() => Promise.resolve())
-      }
+        userLogin: jest.fn()
+      },
+      state: {}
     };
-  });
-  store = new Vuex.Store(storeOptions);
-  it("dispatches userlogin with login data", async () => {
-    // expect.assertions(1);
-    store.dispatch = jest.fn(() => Promise.resolve());
-    shallowMount(App, {
-      mocks: {
-        localVue,
-        store
-      }
-    });
+    return new Vuex.Store(merge(defaultStoreConfig, overrides));
+  }
+  function createWrapper(overrides) {
+    const defaultMountingOptions = {
+      localVue,
+      store: createStore()
+    };
+    return shallowMount(App, merge(defaultMountingOptions, overrides));
+  }
+  it("dispatches fetchListData with $route.params.type", async () => {
+    expect.assertions(1);
+    const store = createStore();
+    store.dispatch = jest.fn();
+    const data = { email: "ravi@gmail.com", password: "test" };
+    createWrapper(store);
     await flushPromises();
-    // expect(store.dispatch).toHaveBeenCalledWith("userLogin");
+    console.log(store.dispatch);
+    expect(store.dispatch).toHaveBeenCalledWith("userLogin", data);
   });
 });
