@@ -1,6 +1,6 @@
 <template>
   <div class="route--display--container">
-    <Login data-testid="loginForm" @form-submitted="doSubmit"></Login>
+    <Login  @form-submitted="doSubmit"></Login>
   </div>
 </template>
 
